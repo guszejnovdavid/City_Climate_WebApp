@@ -31,7 +31,7 @@ def index():
 @app.route("/plot")
 def plot_png2():
     # Generate the figure **without using pyplot**.
-    fig = Figure(figsize=(20, 10), dpi=200)
+    fig = Figure(figsize=(20, 10), dpi=100)
     ax = fig.subplots()
     worldmap = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
     worldmap.plot(color="lightgrey", ax=ax)
