@@ -18,11 +18,11 @@ def hello_world():
     return "<p>Hello, World!</p>"
 
 
-@app.route('/plot')
-def plot_png():
-    output = io.BytesIO()
-    FigureCanvas(plt.gcf()).print_png(output)
-    return Response(output.getvalue(), mimetype='image/png')
+# @app.route('/plot')
+# def plot_png():
+    # output = io.BytesIO()
+    # FigureCanvas(plt.gcf()).print_png(output)
+    # return Response(output.getvalue(), mimetype='image/png')
 
 @app.route("/plot2")
 def plot_png2():
@@ -32,7 +32,7 @@ def plot_png2():
     x = np.arange(30)
     ax.plot(x,x)
     # Save it to a temporary buffer.
-    buf = BytesIO()
+    buf = io.BytesIO()
     fig.savefig(buf, format="png")
     # Embed the result in the html output.
     data = base64.b64encode(buf.getbuffer()).decode("ascii")
