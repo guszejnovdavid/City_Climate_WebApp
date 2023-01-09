@@ -4,11 +4,12 @@ import numpy as np
 import io
 import pandas as pd
 import geopandas as gpd
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
+import base64
 #from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-import seaborn as sns
-sns.set()
+#import seaborn as sns
+#sns.set()
 
 app = Flask(__name__)
 
@@ -23,12 +24,27 @@ def plot_png():
     FigureCanvas(plt.gcf()).print_png(output)
     return Response(output.getvalue(), mimetype='image/png')
 
+@app.route("/plot2")
+def plot_png2():
+    # Generate the figure **without using pyplot**.
+    fig = Figure()
+    ax = fig.subplots()
+    x = np.arange(30)
+    ax.plot(x,x)
+    # Save it to a temporary buffer.
+    buf = BytesIO()
+    fig.savefig(buf, format="png")
+    # Embed the result in the html output.
+    data = base64.b64encode(buf.getbuffer()).decode("ascii")
+    return f"<img src='data:image/png;base64,{data}'/>"
+    
+    
+
 def create_figure():
     fig = Figure()
     axis = fig.add_subplot(1, 1, 1)
-    xs = range(100)
-    ys = [random.randint(1, 50) for x in xs]
-    axis.plot(xs, ys)
+    x = np.arange(30)
+    axis.plot(x, x)
     return fig
 
 # @app.route("/mongo_health")
