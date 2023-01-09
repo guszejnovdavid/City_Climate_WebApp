@@ -2,7 +2,7 @@ from flask import Flask, request
 from pymongo import MongoClient
 import redis
 import config
-import tasks
+#import tasks
 
 
 app = Flask(__name__)
@@ -25,11 +25,11 @@ def redis_health():
     ok = redis_client.ping()
     return "<p>Redis health check: {}</p>".format(ok)   
 
-@app.route('/send_mail', methods=['GET'])
-def send_mail():
-    email = request.args.get('email')
-    tasks.send_mail_async.apply_async(args=[email], countdown=3)
-    return "<p>Email sent to {}</p>".format(email)
+# @app.route('/send_mail', methods=['GET'])
+# def send_mail():
+    # email = request.args.get('email')
+    # tasks.send_mail_async.apply_async(args=[email], countdown=3)
+    # return "<p>Email sent to {}</p>".format(email)
 
 
 
