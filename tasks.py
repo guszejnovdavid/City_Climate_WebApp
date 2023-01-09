@@ -1,7 +1,7 @@
-from celery import Celery
+from celery import celery
 import config
 
-celery_client = Celery(config.APP_NAME +"-worker", broker=config.CELERY_BROKER_URL)
+celery_client = celery(config.APP_NAME +"-worker", broker=config.CELERY_BROKER_URL)
 
 @celery_client.task
 def send_mail_async(data):
