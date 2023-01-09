@@ -7,9 +7,9 @@ import geopandas as gpd
 #import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 import base64
-#from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-#import seaborn as sns
-#sns.set()
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+import seaborn as sns
+sns.set()
 
 app = Flask(__name__)
 
@@ -31,10 +31,12 @@ def index():
 @app.route("/plot")
 def plot_png2():
     # Generate the figure **without using pyplot**.
-    fig = Figure()
+    fig = Figure(figsize=(20, 10), dpi=200)
     ax = fig.subplots()
-    x = np.arange(30)
-    ax.plot(x,x)
+    worldmap = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+    worldmap.plot(color="lightgrey", ax=ax)
+    x = np.arange(-50,50)
+    ax.scatter(x,x)
     # Save it to a temporary buffer.
     buf = io.BytesIO()
     fig.savefig(buf, format="png")
