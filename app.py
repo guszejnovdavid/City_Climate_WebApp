@@ -1,4 +1,4 @@
-from flask import Flask, request, Response
+from flask import Flask, request, Response, render_template
 import config
 import numpy as np
 import io
@@ -13,9 +13,13 @@ import base64
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/hello")
 def hello_world():
     return "<p>Hello, World!</p>"
+    
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 
 # @app.route('/plot')
@@ -24,7 +28,7 @@ def hello_world():
     # FigureCanvas(plt.gcf()).print_png(output)
     # return Response(output.getvalue(), mimetype='image/png')
 
-@app.route("/plot2")
+@app.route("/plot")
 def plot_png2():
     # Generate the figure **without using pyplot**.
     fig = Figure()
@@ -47,32 +51,8 @@ def create_figure():
     axis.plot(x, x)
     return fig
 
-# @app.route("/mongo_health")
-# def mongo_health():
-    # db = mongo_client.test
-    # ok = db.command("ping").get("ok")
-    # return "<p>MongoDB health check: {}</p>".format(ok)
-
-# @app.route("/redis_health")
-# def redis_health():
-    # ok = redis_client.ping()
-    # return "<p>Redis health check: {}</p>".format(ok)   
-
-# @app.route('/send_mail', methods=['GET'])
-# def send_mail():
-    # email = request.args.get('email')
-    # tasks.send_mail_async.apply_async(args=[email], countdown=3)
-    # return "<p>Email sent to {}</p>".format(email)
-
 
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=config.APP_SERVER_PORT)
-    
-
-
-
-
-from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-from matplotlib.figure import Figure
 
