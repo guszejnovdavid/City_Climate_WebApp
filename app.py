@@ -5,6 +5,7 @@ import io
 import pandas as pd
 import geopandas as gpd
 import matplotlib.pyplot as plt
+from matplotlib.figure import Figure
 #from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 import seaborn as sns
 sns.set()
@@ -16,7 +17,7 @@ def hello_world():
     return "<p>Hello, World!</p>"
 
 
-@app.route('/plot.png')
+@app.route('/plot')
 def plot_png():
     output = io.BytesIO()
     FigureCanvas(plt.gcf()).print_png(output)
