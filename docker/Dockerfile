@@ -5,7 +5,7 @@ WORKDIR /usr/app
 RUN python -m venv /usr/app/venv
 ENV PATH="/usr/app/venv/bin:$PATH"
 COPY requirements.txt ./
-RUN pip install --upgrade pip==20.1.1 && \
+RUN pip install --upgrade pip==21.2.2 && \
     pip install -r requirements.txt   && \
     rm requirements.txt
 
