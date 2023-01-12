@@ -22,11 +22,10 @@ def index():
     return render_template('index.html')
 
 
-# @app.route('/plot')
-# def plot_png():
-    # output = io.BytesIO()
-    # FigureCanvas(plt.gcf()).print_png(output)
-    # return Response(output.getvalue(), mimetype='image/png')
+@app.route('/city/<ref_key>')
+def make_plots(ref_key=None):
+    ref_key = ref_key.replace("_","/")
+    return render_template('index.html', insert_text=ref_key)
 
 @app.route("/plot")
 def plot_png2():
