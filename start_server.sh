@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # prepare log files and 
+mkdir -p logs
 touch logs/gunicorn-access.log
 touch logs/gunicorn.log
 
