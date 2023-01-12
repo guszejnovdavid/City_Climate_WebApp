@@ -22,11 +22,6 @@ ENV HOME=/home/ec2-user
 ENV APP_HOME=/home/ec2-user/python-app
 WORKDIR $APP_HOME
 
-
-RUN pwd
-RUN ls
-RUN sleep 5
-
 COPY . $APP_HOME
 COPY --chown=ec2-user:python --from=python-deps /usr/app/venv /usr/app/venv
 RUN ln -s /usr/app/venv /home/ec2-user/python-app/venv
@@ -34,8 +29,9 @@ RUN ln -s /usr/app/venv /home/ec2-user/python-app/venv
 RUN chown -R ec2-user:python $APP_HOME
 ENV PATH="$APP_HOME/venv/bin:$PATH"
 
-USER 999
+ENV PATH="/home/ec2-user/python-app/templates:$PATH"
 
-#RUN chmod 755 /home/ec2-user/python-app/start_server.sh
+
+USER 999
 
 ENTRYPOINT ["/home/ec2-user/python-app/start_server.sh"]

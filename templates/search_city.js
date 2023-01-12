@@ -29,7 +29,7 @@ d3.csv("../db/city_climate_dataframe.csv").then(function (data) {
     //output = _.sortBy(filteredData, 'City')
 
     for (var i = 0; i < filteredData.length; i++) {
-      d3.select("tbody").insert("tr").html("<td>"+[i+1]+"</td>" + "<td>" +(output[i]['Key'])+"</td>" +"<td>" +("<input type=\"button\" value=\"Set as reference city\" onclick=\"window.location.href = city/" +   output[i]['Key'].replace(/\//g, '_')  + "\";>")+"</td>") }
+      d3.select("tbody").insert("tr").html("<td>"+[i+1]+"</td>" + "<td>" +(output[i]['Key'])+"</td>" +"<td>" +("<input type=\"button\" value=\"Set as reference city\" onclick=\"window.location.href=city/" +   output[i]['Key'].replace(/\//g, '_')  + "\";>")+"</td>") }
   };
   window.resizeTo(screen.width,screen.height)
 
