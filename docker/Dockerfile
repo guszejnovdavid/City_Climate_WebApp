@@ -22,7 +22,6 @@ ENV HOME=/home/ec2-user
 ENV APP_HOME=/home/ec2-user/python-app
 WORKDIR $APP_HOME
 
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY . $APP_HOME
 COPY --chown=ec2-user:python --from=python-deps /usr/app/venv /usr/app/venv
 RUN ln -s /usr/app/venv /home/ec2-user/python-app/venv
