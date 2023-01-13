@@ -1,0 +1,166 @@
+<!DOCTYPE HTML>
+<!--
+    TXT by HTML5 UP
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+    <head>
+        <title>City Climate Finder</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <meta name="description" content="A Python WebApp to find cities with similar climates.">
+        <meta name="keywords" content="city climate, python, webapp, render, machine learning">
+        <!-- <link rel="stylesheet" href="assets/css/main.css" /> -->
+        <link rel="stylesheet" href="static/assets/css/main.css" />
+         <!-- Load icon library -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+    </head>
+    
+    <body class="is-preload">
+        <div id="page-wrapper">
+        
+        
+
+             <!-- Header-->
+                <header id="header">
+                    <div class="logo container">
+                        <div>
+                            <h1><a href="index.html" id="logo">City Climate Finder</a></h1>
+                        </div>
+                    </div>
+                </header>
+
+            <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="#main">Intro</a></li>
+                        <li><a href="#App">App</a></li>
+                        <li><a href="http://github.com/guszejnovdavid">Blog Post</a>
+                        <li><a href="http://github.com/guszejnovdavid">GitHub</a>
+                        </li>
+                    </ul>
+                </nav>
+
+            <!-- Main -->
+                <section id="main">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-9 col-12-medium">
+                                <div class="content">
+
+                                    <!-- Content -->
+
+                                        <article class="box page-content">
+
+                                            <section>
+                                                <h3>Intro</h3>
+                                                <p{ margin-top: 0px; align="justify"}>
+                                                    If you have ever wondered which cities have similar climates you might be tempted to look up a world map of the different <a href="https://en.wikipedia.org/wiki/K%C3%B6ppen_climate_classification">climate zones</a>, however these climates are fairly broadly defined so cities with quite different climates can end up in the same zone. Also, due to the hard boundary between climate zones, border cities (like Frankfurt or Philadelphia) can have cities in a different climate zone that are more similar to them than others in their own zone. 
+                                                </p>
+                                                <p{align="justify"}>
+                                                This the tool compares detailed climate data from throusands of cities from <a href="https://www.weatherbase.com">Weatherbase</a> and calculate how similar they are.
+                                                </p>
+                                            </section>
+                                        </article>
+
+                                </div>
+                            </div>
+                            <div class="col-3 col-12-medium">
+                                <div class="sidebar">
+
+                                    <!-- Sidebar -->
+                                         
+                                            <section>
+                                                <h3 class="major"><span>Author</span></h3> 
+                                                <p>
+                                                    David Guszejnov <br>
+                                                    <a href="http://github.com/guszejnovdavid">GitHub</a> <br>
+                                                    guszejnov dot david at gmail dot com 
+                                                </p>
+                                            </section>
+                                </div>
+                            </div>
+                         <div class="col-12">
+                                <!-- Main Block -->
+                        <section class="box features"id="App">
+                        <div class="row">
+                            <div class="col-12-medium">
+                                <!-- Contents -->
+                            
+                                {% if not ref_key %}
+                                    <!-- Set Reference City -->
+                                    <div class="content">
+                                            <article class="box page-content">
+                                                <h3><span>How to Use</span></h3>
+                                                <section>
+                                                    <p{align="justify"}>
+                                                        First you need to select a reference city (i.e., the city to chich you want all others to be compared). Use the form below.
+                                                    </p>
+                                                    <!-- The form -->
+                                                    <form id="form">
+                                                        <input class="form-control" id="user-input" placeholder="Enter city name..."
+                                                          aria-label="Enter email..." aria-describedby="submit-button">
+                                                        <div class="boton input-group-append" id="boton">
+                                                          <button class="boton btn btn-secondary" type="button" id="button">Find city!</button>
+                                                        </div>
+                                                    </form>
+                                                    <p class="noresults">
+                                                    </p>
+                                                    <p class="noresults2">
+                                                        Note that it might take some time to load the database
+                                                    </p>
+                                                    <table class="table" cellpadding="10">
+                                                    <thead>
+                                                        <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">City</th>
+                                                        <th scope="col"> </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody></table>
+                                                    <script src="static/assets/js/search_city.js"></script>
+                                                </section>
+                                            </article>
+                                    </div>
+                                {% else %}
+                                    <!-- Show Results for reference city -->
+                                    <div class="content">
+                                            <article class="box page-content">
+                                                <h3><span>Results for {{ref_key}}</span></h3>
+                                                <section>
+                                                    <p{align="justify"}>
+                                                        First you need to select a reference city (i.e., the city to chich you want all others to be compared). Use the form below.
+                                                    </p>
+                                                    
+                                                    
+                                                    
+                                                    <img src='data:image/png;base64,{{plot1_data  | safe}}' style='height: 100%; width: 100%; object-fit: contain'/>
+                                                    
+                                                    
+                                                </section>
+                                            </article>
+                                    </div>
+                                {% endif %}
+                                
+                                
+                            </div>
+                         </div>
+                         </section>
+                         </div>
+                 </div>
+                 </section>
+        </div>
+
+        <!-- Scripts -->
+            <script src="static/assets/js/jquery.min.js"></script>
+            <script src="static/assets/js/jquery.dropotron.min.js"></script>
+            <script src="static/assets/js/jquery.scrolly.min.js"></script>
+            <script src="static/assets/js/browser.min.js"></script>
+            <script src="static/assets/js/breakpoints.min.js"></script>
+            <script src="static/assets/js/util.js"></script>
+            <script src="static/assets/js/main.js"></script>
+
+    </body>
+</html>

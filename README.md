@@ -1,25 +1,24 @@
-# An Flask Application to use Docker
-This is an simple python web application to use Docker. Its' purpose is to show how to dockerize a python application which connects to service from host such as mongoDB and Redis. 
+## City Climate WebApp
 
-## Prerequisites
-- Host machine with mongoDB and Redis installed
-- Docker
-- Python 3.9 or higher
+If you have ever wondered which cities have similar climates you might be tempted to look up a world map of the different climate zones, however these climates are fairly broadly defined so cities with quite different climates can end up in the same zone. Also, due to the hard boundary between climate zones, border cities (like Frankfurt or Philadelphia) can have cities in a different climate zone that are more similar to them than others in their own zone. 
 
-## Web Application
-Here, we use the popular Flask framework to create a web application. 
-The four routes are:
-- /: This is the index route. It will show the welcome message.
-- /mongo_health: This is the route to check the health of mongoDB. 
-- /redis_health: This is the route to check the health of Redis.
-- /send_mail: This is the route to try to use asyncnious worker to send an email.
+This the Python based app compares detailed climate data from throusands of cities and calculate how similar they are.
 
+### Python/Flask application with Nginx proxy
 
-## How to build with Docker?
+Project structure:
 ```
-docker build -t python-app -f docker/Dockerfile .
+.
+├── compose.yaml
+├── flask
+│   ├── Dockerfile
+│   ├── requirements.txt
+│   ├── server.py
+│   ├── templates
+│         ├── index.html
+└── nginx
+    ├── nginx.conf
+    ├── static
 ```
-## How to run with Docker?
-```
-docker run --network host python-app:latest
-```
+
+## Deploy with docker compose

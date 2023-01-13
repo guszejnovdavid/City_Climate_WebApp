@@ -1,2 +1,0 @@
-APP_NAME="app"
-APP_SERVER_PORT = 5008
