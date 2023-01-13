@@ -1,4 +1,4 @@
-d3.csv("static/db/city_climate_dataframe.csv").then(function (data) {
+d3.csv("static/db/cities.csv").then(function (data) {
   var db = data;
   var button = d3.select("#button");
   var form = d3.select("#form");
