@@ -34,7 +34,11 @@
             <!-- Nav -->
                 <nav id="nav">
                     <ul>
+                        {% if not ref_key %}
                         <li><a href="#main">Intro</a></li>
+                        {% else %}
+                        <li><a href="javascript:history.back()">Try another city</a></li>
+                        {% endif %}
                         <li><a href="#App">App</a></li>
                         <li><a href="http://github.com/guszejnovdavid">Blog Post</a>
                         <li><a href="http://github.com/guszejnovdavid">GitHub</a>
@@ -46,6 +50,7 @@
                 <section id="main">
                     <div class="container">
                         <div class="row">
+                        {% if not ref_key %}
                             <div class="col-9 col-12-medium">
                                 <div class="content">
 
@@ -66,6 +71,7 @@
 
                                 </div>
                             </div>
+
                             <div class="col-3 col-12-medium">
                                 <div class="sidebar">
 
@@ -81,6 +87,7 @@
                                             </section>
                                 </div>
                             </div>
+                        {% endif %}
                          <div class="col-12">
                                 <!-- Main Block -->
                         <section class="box features"id="App">
@@ -95,12 +102,28 @@
                                                 <h3><span>How to Use</span></h3>
                                                 <section>
                                                     <p{align="justify"}>
-                                                        First you need to select a reference city (i.e., the city to chich you want all others to be compared). Use the form below.
+                                                        First you need to select a reference city (i.e., the city to which you want all others to be compared). Enter its name into the search form below, then pick one of the matching city keys. You can also restrict the search to different world regions and define an exclusion radius (i.e., to throw away cities close by that are likely to have very similar weather).
                                                     </p>
                                                     <!-- The form -->
                                                     <form id="form">
-                                                        <input class="form-control" id="user-input" placeholder="Enter city name..."
-                                                          aria-label="Enter email..." aria-describedby="submit-button">
+                                                       <label for="continent">Show results from region/continent:</label>
+                                                        <select name="continent" id="continent_input">
+                                                          <option value="All">All</option>
+                                                          <option value="Europe">Europe</option>
+                                                          <option value="Africa">Africa</option>
+                                                          <option value="North America">North America</option>
+                                                          <option value="Central America">Central America</option>
+                                                          <option value="South America">South America</option>
+                                                          <option value="Asia">Asia</option>
+                                                          <option value="Antarctica">Antarctica</option>
+                                                          <option value="Middle East">Middle East</option>
+                                                          <option value="Oceania">Oceania</option>
+                                                        </select> 
+                                                        <label >Exlude cities within distance [in kilometer]:</label>
+                                                        <input class="form-control" id="exclusion_radius_input" placeholder="No nearby cities exluded">
+                                                        
+                                                        <label >Reference city name:</label>
+                                                        <input class="form-control" id="city_name_input" placeholder="Enter city name...">
                                                         <div class="boton input-group-append" id="boton">
                                                           <button class="boton btn btn-secondary" type="button" id="button">Find city!</button>
                                                         </div>
@@ -125,18 +148,24 @@
                                             </article>
                                     </div>
                                 {% else %}
+                                
+                                    <button type="button" onclick="javascript:history.back()">Try another city</button>
                                     <!-- Show Results for reference city -->
                                     <div class="content">
                                             <article class="box page-content">
-                                                <h3><span>Results for {{ref_key}}</span></h3>
+                                                <h3><span>Results for {{ref_key}}{{filter_text}}</span></h3>
                                                 <section>
                                                     <p{align="justify"}>
-                                                        First you need to select a reference city (i.e., the city to chich you want all others to be compared). Use the form below.
+                                                        Best matches: <br>
+                                                        
+                                                        <table>
+                                                        <tr> <td><b>#</b></td> <td><b>City</b></td> <td><b>Similarity distance</b></td> </tr>
+                                                        {% for elem in best_matches %}
+                                                            <tr> <td>{{ loop.index0+1 }}</td>  <td>{{ elem[0] }}</td> <td>{{ elem[1] }}</td> </tr>
+                                                        {% endfor %}
+                                                        </table>
+                                                        
                                                     </p>
-                                                    
-                                                    
-                                                    
-                                                    
                                                     
                                                 </section>
                                             </article>
@@ -152,7 +181,7 @@
                  </div>
                  </section>
         </div>
-
+        
         <!-- Scripts -->
             <script src="static/assets/js/jquery.min.js"></script>
             <script src="static/assets/js/jquery.dropotron.min.js"></script>
