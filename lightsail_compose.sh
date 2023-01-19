@@ -19,7 +19,7 @@ git clone http://github.com/guszejnovdavid/City_Climate_WebApp.git $WorkingDirec
 
 # copy in systemd unit file and register it so our compose file runs 
 # on system restart
-curl -o /etc/systemd/system/docker-compose-app.service https://github.com/guszejnovdavid/City_Climate_WebApp/raw/main/docker-compose-app.service
+curl -o /etc/systemd/system/docker-compose-app.service https://raw.githubusercontent.com/guszejnovdavid/City_Climate_WebApp/main/docker-compose-app.service
 systemctl enable docker-compose-app
 
 # start up the application via docker-compose

@@ -22,3 +22,13 @@ Project structure:
 ```
 
 ## Deploy with docker compose
+
+##Deploying on Amazon Lightsail
+Add the following as launch script:
+```
+curl -o lightsail-compose.sh https://raw.githubusercontent.com/guszejnovdavid/City_Climate_WebApp/main/lightsail_compose.sh
+
+chmod +x ./lightsail-compose.sh
+
+./lightsail-compose.sh
+```
