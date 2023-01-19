@@ -115,7 +115,7 @@ def climate_similarity_map(ref_key, N_elem_per_chunk=500, dist_scale=0.5,  palet
             if limits=='Middle East':
                 xlim = [30,65]; ylim = [10,45]
             if limits=='South America':
-                xlim = [-90,-40]; ylim = [-60,20]
+                xlim = [-90,-35]; ylim = [-60,20]
             if limits=='Oceania':
                 xlim = [110,180]; ylim = [-50,0] 
         else:
