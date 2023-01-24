@@ -2,7 +2,7 @@
 
 If you have ever wondered which cities have similar climates you might be tempted to look up a world map of the different climate zones, however these climates are fairly broadly defined so cities with quite different climates can end up in the same zone. Also, due to the hard boundary between climate zones, border cities (like Frankfurt or Philadelphia) can have cities in a different climate zone that are more similar to them than others in their own zone. 
 
-This the Python based app compares detailed climate data from throusands of cities and calculate how similar they are.
+This the Python based app compares detailed climate data from throusands of cities and calculate how similar they are. For more details check out the [web app](http://www.david-guszejnov.com/climate_app) and [blog post](https://medium.com/@guszejnov.david/data-science-based-climate-zones-24fd5085d24).
 
 ### Python/Flask application with Nginx proxy
 
@@ -32,3 +32,4 @@ chmod +x ./lightsail-compose.sh
 
 ./lightsail-compose.sh
 ```
+
