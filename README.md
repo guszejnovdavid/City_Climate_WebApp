@@ -26,10 +26,10 @@ Project structure:
 ## Deploying on Amazon Lightsail
 Add the following as launch script:
 ```
-curl -o lightsail-compose.sh https://raw.githubusercontent.com/guszejnovdavid/City_Climate_WebApp/main/lightsail_compose.sh
+sudo curl -o lightsail-compose.sh https://raw.githubusercontent.com/guszejnovdavid/City_Climate_WebApp/main/lightsail_compose.sh
 
-chmod +x ./lightsail-compose.sh
+sudo chmod +x ./lightsail-compose.sh
 
-./lightsail-compose.sh
+sudo ./lightsail-compose.sh
 ```
 
