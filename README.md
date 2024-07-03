@@ -32,4 +32,14 @@ sudo chmod +x ./lightsail-compose.sh
 
 sudo ./lightsail-compose.sh
 ```
+If you are running low on memory, you can enable swapping (disabled on AWS Lightsail by default):
+```
+sudo fallocate -l 512MB /swapfile
+
+sudo chmod 600 /swapfile
+
+sudo mkswap /swapfile
+
+sudo swapon /swapfile
+```
 
