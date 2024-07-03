@@ -12,9 +12,9 @@ chmod +x /usr/local/bin/docker-compose
 
 # copy the dockerfile into /srv/docker 
 # if you change this, change the systemd service file to match
-WorkingDirectory=/var/city_climate
+export WorkingDirectory=/var/city_climate
 # curl -o /var/docker/compose.yaml.yml https://github.com/guszejnovdavid/City_Climate_WebApp/raw/main/compose.yaml
-cd var
+cd /var
 git clone http://github.com/guszejnovdavid/City_Climate_WebApp.git $WorkingDirectory
 
 # copy in systemd unit file and register it so our compose file runs 
